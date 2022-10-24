@@ -17,7 +17,7 @@ def result():
     query = f"select * from production.products where product_name like '{nomeprodotto}%'" #  f(format) prima di una stringa = 'format' + string = serve per inserire una variabile all interno di una stringa
     dfprodotti = pd.read_sql(query,conn)
     # Visualizzare le informazioni 
-    return render_template('result.html', table = dfprodotti.to_html())
+    return render_template('result.html', nomiColonne = dfprodotti.columns.values, dati = list( dfprodotti.values.tolist()))
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True) 
